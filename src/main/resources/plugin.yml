@@ -1,0 +1,15 @@
+name: iPotions
+version: ${project.version}
+main: me.natowb.ipotions.Main
+api-version: 1.16
+prefix: iPotions
+authors: [natowb]
+description: create custom potions
+website: github.com/natowb
+
+
+
+
+commands:
+  ipot:
+    usage: /<command> help
