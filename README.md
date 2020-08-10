@@ -6,6 +6,7 @@ A plugin for creating custom potions
 - [x] Create custom potions in config
 - [x] Select potions color
 - [x] Select Multiple Sub potions
+- [ ] change potion type ie Splash & Lingering
 - [ ] Show custom particles
 - [ ] Create potions in game
 ### Potion Effects
@@ -45,5 +46,11 @@ Potion of Regeneration |	REGENERATION |	Potion of Strength |	INCREASE_DAMAGE
 #                strength: 2
 
 prefix: '[&6i&ePotions]'
-
+```
+```YAML
+permissions:
+  ipot.*: # access to everything # default op
+  ipot.give: # access to give command # default op
+  ipot.help: # access to help command # default op or if they have access to the give command
+  ipot.consume: # access to consume a iPot Potion # default true
 ```
