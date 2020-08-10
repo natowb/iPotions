@@ -6,7 +6,7 @@
 
     <groupId>me.natowb.custompotions</groupId>
     <artifactId>CustomPotions</artifactId>
-    <version>1.0-SNAPSHOT</version>
+    <version>1.16-v1.0</version>
     <packaging>jar</packaging>
 
     <name>iPotions</name>

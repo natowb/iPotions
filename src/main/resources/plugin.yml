@@ -1,5 +1,5 @@
 name: iPotions
-version: ${project.version}
+version: 1.0
 main: me.natowb.ipotions.Main
 api-version: 1.16
 prefix: iPotions
@@ -7,9 +7,26 @@ authors: [natowb]
 description: create custom potions
 website: github.com/natowb
 
-
-
-
 commands:
   ipot:
     usage: /<command> help
+
+
+permissions:
+  ipot.*:
+    children:
+      ipot.give: true
+      ipot.consume: true
+      ipot.help: true
+
+  ipot.give:
+    default: op
+    description: allows player to give potion to someone
+    children:
+      ipot.help: true
+  ipot.help:
+    default: op
+    description:  allows players to see help menu
+  ipot.consume:
+    default: true
+    description: allows players to consume iPot potions
