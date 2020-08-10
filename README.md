@@ -26,26 +26,32 @@ Potion of Regeneration |	REGENERATION |	Potion of Strength |	INCREASE_DAMAGE
 
 ### Example Config
 ```YAML
-# ###########################################################################
+##########################################################################
 # Created by NatoWB
 # https://github.com/natowb
-# ###########################################################################
+# goto https://github.com/natowb/iPotions for colors and effects
+##########################################################################
+# iPotions Settings
+# Supports Color Codes IE &6, &e, &a
+##########################################################################
+prefix: "[&6i&ePotions&r]"
+##########################################################################
 # Potions
-# goto https://github.com/natowb/iPotions/ for potions colors & effects 
-# ###########################################################################
-# potions:
-#    demo:
-#        display: 'Demo'
-#        color: 'red'
-#        effects:
-#            jump:
-#                duration: 5 # in seconds
-#                strength: 2
-#            luck:
-#                duration: 5 # in seconds
-#                strength: 2
+# Potion Colors: lime, green, olive, yellow, orange, red, maroon
+# fuchsia, purple, aqua, teal, blue, navy, white, silver, gray, black
+##########################################################################
+potions:
+  demo:
+    display: '&aDemo' # display name of the potions item
+    color: 'red' # what color of potion to display as the icon
+    effects: # list of potion effects this will use
+      jump: # name of potion effect goto github above to see list
+        duration: 10 # time this effect lastest in seconds
+        strength: 2 # the strength of the effect starting from 0
+      slow_falling: # name of potion effect goto github above to see list
+        duration: 10 # time this effect lastest in seconds
+        strength: 0 # the strength of the effect starting from 0
 
-prefix: '[&6i&ePotions]'
 ```
 ```YAML
 permissions:
