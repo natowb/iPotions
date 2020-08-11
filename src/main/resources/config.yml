@@ -14,6 +14,7 @@ prefix: "[&6i&ePotions&r]"
 ##########################################################################
 potions:
   demo:
+    type: splash
     display: '&aDemo' # display name of the potions item
     color: 'red' # what color of potion to display as the icon
     effects: # list of potion effects this will use

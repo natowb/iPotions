@@ -6,9 +6,13 @@ import org.bukkit.Material;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
+import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
+import org.bukkit.entity.Projectile;
+import org.bukkit.entity.ThrownPotion;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
+import org.bukkit.event.entity.ProjectileLaunchEvent;
 import org.bukkit.event.player.PlayerItemConsumeEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -57,9 +61,7 @@ public final class Main extends JavaPlugin implements Listener, CommandExecutor 
                         return true;
                     }
                     String help = "" +
-                            "&e#####################################&r\n" +
-                            "&e############iPotions Help#############&r\n" +
-                            "&e#####################################&r\n" +
+                            "&e###########  &6iPotions Help  &e###########&r\n" +
                             "&6/ipot give &c<player> &c<potion> &a[amount]&r";
 
                     player.sendMessage(ChatColor.translateAlternateColorCodes('&', help));
@@ -125,6 +127,27 @@ public final class Main extends JavaPlugin implements Listener, CommandExecutor 
                 }
             }
         }
+    }
+
+
+    @EventHandler
+    public void throwItem(ProjectileLaunchEvent event) {
+        Projectile proj = event.getEntity();
+        if(proj.getShooter() instanceof Player) {
+            Player player = (Player)event.getEntity().getShooter();
+            if(proj.getType() == EntityType.SPLASH_POTION) {
+                ThrownPotion pot = (ThrownPotion) proj;
+                for(String s : getPotionList()) {
+                    if(pot.getItem().getItemMeta().getLore().get(0).equalsIgnoreCase("iPot: " + s)) {
+                        if(!player.hasPermission("ipot.throw")) {
+                            Lib.msg(player, "&cError: you don't have permission to throw this item");
+                            event.setCancelled(true);
+                        }
+                    }
+                }
+            }
+        }
+
     }
 
 
