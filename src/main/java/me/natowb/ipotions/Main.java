@@ -61,9 +61,7 @@ public final class Main extends JavaPlugin implements Listener, CommandExecutor 
                         return true;
                     }
                     String help = "" +
-                            "&e#####################################&r\n" +
-                            "&e############iPotions Help#############&r\n" +
-                            "&e#####################################&r\n" +
+                            "&e###########  &6iPotions Help  &e###########&r\n" +
                             "&6/ipot give &c<player> &c<potion> &a[amount]&r";
 
                     player.sendMessage(ChatColor.translateAlternateColorCodes('&', help));
