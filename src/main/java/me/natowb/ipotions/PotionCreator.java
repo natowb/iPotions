@@ -96,6 +96,9 @@ public class PotionCreator {
         try {
             for(String s : plugin.getConfig().getConfigurationSection("potions").getKeys(false)) {
                 if(s.equalsIgnoreCase(potion)) {
+                    String type = plugin.getConfig().getString("potions."+s+".type");
+                    if(type.equalsIgnoreCase("splash")) {item = new ItemStack(Material.SPLASH_POTION, amount);}
+                    if(type.equalsIgnoreCase("area")) {item = new ItemStack(Material.LINGERING_POTION, amount);}
                     String display = plugin.getConfig().getString("potions."+s+".display");
                     String color = plugin.getConfig().getString("potions."+s+".color");
                     pmeta.setColor(COLORS.get(color));

@@ -1,7 +1,7 @@
 name: iPotions
 version: 1.0
 main: me.natowb.ipotions.Main
-api-version: 1.16
+api-version: 1.13
 prefix: iPotions
 authors: [natowb]
 description: create custom potions
@@ -28,5 +28,8 @@ permissions:
     default: op
     description:  allows players to see help menu
   ipot.consume:
+    default: true
+    description: allows players to consume iPot potions
+  ipot.throw:
     default: true
     description: allows players to consume iPot potions
