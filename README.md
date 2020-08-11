@@ -1,5 +1,7 @@
 ## **iPotions**
-*Note: This should work in version other than the currently tested but them may not. please report any version that don't work and ill update it ASAP*
+
+_Note: This should work in version other than the currently tested but them may not. please report any version that don't work and ill update it ASAP_
+
 ## A plugin for creating custom potions
 
 First iteration of the plugin so please give feedback on any bugs you notice as well as any suggestions or features you would like to see.
@@ -7,19 +9,24 @@ First iteration of the plugin so please give feedback on any bugs you notice as 
 All release will be hosted [here]('https://github.com/natowb/iPotions')
 
 ### Planned Features
+
 - [x] Create custom potions in config
 - [x] Select potions color
 - [x] Select Multiple Sub potions
-- [ ] change potion type ie Splash & Lingering
+- [x] change potion type ie Splash & Lingering
 - [ ] Show custom particles
 - [ ] Create potions in game
+
 ### Potion Effects
+
 ![https://i.imgur.com/FNVrgag.png](https://i.imgur.com/FNVrgag.png)
 
 ### Potion Colors
+
 ![https://i.imgur.com/GF8PPff.png](https://i.imgur.com/GF8PPff.png)
 
 ### Example Config
+
 ```YAML
 ##########################################################################
 # Created by NatoWB
@@ -48,7 +55,9 @@ potions:
         duration: 10 # time this effect lastest in seconds
         strength: 0 # the strength of the effect starting from 0
 ```
+
 ### Permissions
+
 ```YAML
 permissions:
   ipot.*: # access to everything # default op
