@@ -1,7 +1,8 @@
-package me.natowb.ipotions;
+package me.natowb.ipotions.creator;
 
 import org.bukkit.ChatColor;
 import org.bukkit.Color;
+import org.bukkit.Effect;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
@@ -10,14 +11,14 @@ import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
+
 public class PotionCreator {
 
 
-    private static final Map<String, Color> COLORS = new HashMap<String, Color>() {{
+    public static HashMap<UUID, PotionCreatorGUI> pendingPotions = new HashMap<>();
+
+    public static final Map<String, Color> COLORS = new HashMap<String, Color>() {{
         put("red", Color.RED);
         put("green", Color.GREEN);
         put("blue", Color.BLUE);
@@ -37,6 +38,23 @@ public class PotionCreator {
         put("teal", Color.TEAL);
 
 
+    }};
+    public static final Set<String> EFFECTS = new HashSet<String>() {{
+        add("INVISIBILITY");
+        add("JUMP");
+        add("FIRE_RESISTANCE");
+        add("SPEED");
+        add("LUCK");
+        add("HEAL");
+        add("REGENERATION");
+        add("SLOW");
+        add("WATER_BREATHING");
+        add("HARM");
+        add("POISON");
+        add("WEAKNESS");
+        add("SLOW_FALLING");
+        add("NIGHT_VISION");
+        add("INCREASE_DAMAGE");
     }};
 
     private static JavaPlugin plugin;
@@ -106,6 +124,9 @@ public class PotionCreator {
                     for(String e : plugin.getConfig().getConfigurationSection("potions."+s+".effects").getKeys(false)) {
                         String duration = plugin.getConfig().getString("potions."+s+".effects."+e+".duration");
                         String strength = plugin.getConfig().getString("potions."+s+".effects."+e+".strength");
+                        if(e.equalsIgnoreCase("turtle_master")) {
+                            continue;
+                        }
                         pmeta.addCustomEffect(new PotionEffect(PotionEffectType.getByName(e), (Integer.parseInt(duration) * 20), Integer.parseInt(strength)),true);
                     }
                     pmeta.setDisplayName(ChatColor.translateAlternateColorCodes('&', display));

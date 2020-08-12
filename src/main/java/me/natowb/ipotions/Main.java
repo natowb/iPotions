@@ -1,29 +1,32 @@
 package me.natowb.ipotions;
 
+import me.natowb.ipotions.commands.*;
+import me.natowb.ipotions.creator.PotionCreator;
+import me.natowb.ipotions.creator.PotionCreatorGUI;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
-import org.bukkit.entity.EntityType;
-import org.bukkit.entity.Player;
-import org.bukkit.entity.Projectile;
-import org.bukkit.entity.ThrownPotion;
+import org.bukkit.entity.*;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.ProjectileLaunchEvent;
+import org.bukkit.event.inventory.InventoryCloseEvent;
 import org.bukkit.event.player.PlayerItemConsumeEvent;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.PotionMeta;
 import org.bukkit.plugin.java.JavaPlugin;
 
-import java.util.ArrayList;
-import java.util.Set;
+import java.util.*;
 
 public final class Main extends JavaPlugin implements Listener, CommandExecutor {
 
 
     public static Main ins;
+
+
 
     @Override
     public void onEnable() {
@@ -54,61 +57,36 @@ public final class Main extends JavaPlugin implements Listener, CommandExecutor 
         if(sender instanceof Player) {
             Player player = (Player) sender;
 
-            if(args.length==1) {
-                if(args[1].equalsIgnoreCase("help")) {
-                    if(!player.hasPermission("ipot.help")) {
-                        Lib.msg(player, "&cError: you don't have access to this command");
-                        return true;
-                    }
-                    String help = "" +
-                            "&e###########  &6iPotions Help  &e###########&r\n" +
-                            "&6/ipot give &c<player> &c<potion> &a[amount]&r";
-
-                    player.sendMessage(ChatColor.translateAlternateColorCodes('&', help));
+            if(args.length>0) {
+                if(args[0].equalsIgnoreCase("help")) {
+                    new HelpCommand(player);
                     return true;
                 }
-            }
-
-            if(args.length>=3) {
-                if(args[0].equalsIgnoreCase("give")) {
-                    if(!player.hasPermission("ipot.give")) {
-                        Lib.msg(player, "&cError: you don't have access to this command");
+                if(args.length==2) {
+                    if(args[0].equalsIgnoreCase("delete")) {
+                        new DeleteCommand(player, args);
                         return true;
                     }
-                    // give <player> <potion> <amount>
-                    Player target = Bukkit.getPlayer(args[1]);
-                    String potion = args[2];
-                    int amount = 1;
-                    if(args.length == 4) {
-                        try {amount = Integer.parseInt(args[3]);} catch (NumberFormatException e)
-                        { Lib.msg(player, "&cError: &6<" + args[3] + "> &cnot a valid number"); return true;};
-                    }
-                    if(target == null) {
-                        Lib.msg(player, "&cError: &6<" + args[1] + "> &cnot a valid player");
+                }
+                if(args.length>=3) {
+                    //give <player> <potion> [amount]
+                    if(args[0].equalsIgnoreCase("give")) {
+                        new GiveCommand(player, args);
                         return true;
                     }
-                    if(!PotionCreator.validPotion(potion)) {
-                        Lib.msg(player, "&cError: &6<" + potion + "> &cpotion doesn't exist");
+                    //create <name> <display> <color>
+                    if(args.length > 3&&args[0].equalsIgnoreCase("create")) {
+                        new CreateCommand(player, args);
                         return true;
                     }
-                    Lib.msg(player, "&aGave &6<" + target.getName() +" "+ String.valueOf(amount) +  ">&a " + potion);
-                    target.getInventory().addItem(PotionCreator.createPotion(potion, amount));
-                    Lib.msg(target, "&aRecieved &6<" +  String.valueOf(amount) +  " " + potion + ">&a from " + player.getName());
-                    return true;
+                    //edit <name> <attribute> <id> <value>
+                    if(args.length > 3&&args[0].equalsIgnoreCase("edit")) {
+                        new EditCommand(player, args);
+                        return true;
+                    }
                 }
             }
-            if(player.hasPermission("ipot.help")) {
-                String help = "" +
-                        "&e###########  &6iPotions Help  &e###########&r\n" +
-                        "&6/ipot give &c<player> &c<potion> &a[amount]&r";
-                player.sendMessage(ChatColor.translateAlternateColorCodes('&', help));
-                return true;
-            } else {
-                Lib.msg(player, "&cError: you don't have access to this command");
-                return true;
-            }
-
-
+            new HelpCommand(player);
         }
         return true;
     }
@@ -150,12 +128,66 @@ public final class Main extends JavaPlugin implements Listener, CommandExecutor 
 
     }
 
+    @EventHandler
+    public void onGUIClosed(InventoryCloseEvent event) {
+
+        Player player = (Player) event.getPlayer();
+        if(event.getView().getTitle().equalsIgnoreCase("Set Potion Effects")) {
+            try {
+                Material mat = event.getInventory().getItem(0).getType();
+                Lib.msg(player, mat.toString());
+                HashSet<String> effects = new HashSet<>();
+                for(ItemStack item : event.getInventory().getContents()) {
+                    if(item == null) {
+                        continue;
+                    }
+                    if(item.getType().equals(Material.POTION) || !item.getType().equals(Material.SPLASH_POTION) || !item.getType().equals(Material.LINGERING_POTION)) {
+                        PotionMeta pmeta = (PotionMeta) item.getItemMeta();
+                        Lib.msg(player, pmeta.getBasePotionData().getType().toString());
+                        effects.add(pmeta.getBasePotionData().getType().toString());
+                    }
+                }
+                PotionCreatorGUI gui = PotionCreator.pendingPotions.get(player.getUniqueId());
+                String name = gui.name;
+                String display = gui.display;
+                String color = gui.color;
+                String type = "base";
+                if(mat.equals(Material.SPLASH_POTION)) {
+                    type = "splash";
+                }
+                if(mat.equals(Material.LINGERING_POTION)) {
+                    type = "area";
+                }
+                getConfig().set("potions."+name+".display", display);
+                getConfig().set("potions."+name+".type", type);
+                getConfig().set("potions."+name+".color", color);
+                for(String s : effects) {
+                    getConfig().set("potions."+name+".effects."+s+".duration", 1);
+                    getConfig().set("potions."+name+".effects."+s+".strength", 1);
+                }
+                saveConfig();
+                Lib.msg(player, "&aSuccessful Creation: &6<"+name+">&a was created" );
+
+
+            } catch (NullPointerException e) {
+                Lib.msg(player, "&cCanceled Creation: no potions added");
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+
+    }
+
 
     public ArrayList<String> getPotionList() {
 
         try {
+            ArrayList<String> list = new ArrayList<>();
             Set<String> pots = getConfig().getConfigurationSection("potions").getKeys(false);
-            return new ArrayList<String>(pots);
+            for(String s : pots) {
+                list.add(s.toLowerCase());
+            }
+            return list;
         } catch (Exception e) {
             return null;
         }

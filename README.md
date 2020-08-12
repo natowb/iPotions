@@ -8,14 +8,25 @@ First iteration of the plugin so please give feedback on any bugs you notice as 
 
 All release will be hosted [here]('https://github.com/natowb/iPotions')
 
+
+###Latest Features
+- Ability to create and delete potions in game
+- Ability to edit and config potions in game
+- new permissions were added
+	```YAML
+	ipot.create 	# access to create potions in game 	/ deafult: op
+	ipot.delete 	# access to delete potions in game 	/ deafult: op
+	ipot.edit 		# access to edit potions in game 	/ deafult: op
+	```
 ### Planned Features
 
 - [x] Create custom potions in config
 - [x] Select potions color
 - [x] Select Multiple Sub potions
 - [x] change potion type ie Splash & Lingering
+- [x] config potions in-game
 - [ ] Show custom particles
-- [ ] Create potions in game
+
 
 ### Potion Effects
 
@@ -41,6 +52,7 @@ prefix: "[&6i&ePotions&r]"
 # Potions
 # Potion Colors: lime, green, olive, yellow, orange, red, maroon
 # fuchsia, purple, aqua, teal, blue, navy, white, silver, gray, black
+# Potion Types: base, splash, area
 ##########################################################################
 potions:
   demo:
@@ -60,8 +72,13 @@ potions:
 
 ```YAML
 permissions:
-  ipot.*: # access to everything # default op
-  ipot.give: # access to give command # default op
-  ipot.help: # access to help command # default op or if they have access to the give command
-  ipot.consume: # access to consume a iPot Potion # default true
+  ipot.*: 		# access to everything 				/ default op
+  ipot.give: 	# access to give command 			/ default op
+  ipot.help: 	# access to help command			/ default op or if they have access to the give command
+  ipot.consume: # access to consume a iPot Potion 	/ default true
+  ipot.throw 	# acces to throw a iPot Potion 		/ default true
+  ipot.create 	# access to create potions in game 	/ deafult: op
+  ipot.delete 	# access to delete potions in game 	/ deafult: op
+  ipot.edit 	# access to edit potions in game 	/ deafult: op
+  
 ```
