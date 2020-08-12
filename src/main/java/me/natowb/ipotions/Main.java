@@ -135,7 +135,6 @@ public final class Main extends JavaPlugin implements Listener, CommandExecutor 
         if(event.getView().getTitle().equalsIgnoreCase("Set Potion Effects")) {
             try {
                 Material mat = event.getInventory().getItem(0).getType();
-                Lib.msg(player, mat.toString());
                 HashSet<String> effects = new HashSet<>();
                 for(ItemStack item : event.getInventory().getContents()) {
                     if(item == null) {
@@ -143,7 +142,6 @@ public final class Main extends JavaPlugin implements Listener, CommandExecutor 
                     }
                     if(item.getType().equals(Material.POTION) || !item.getType().equals(Material.SPLASH_POTION) || !item.getType().equals(Material.LINGERING_POTION)) {
                         PotionMeta pmeta = (PotionMeta) item.getItemMeta();
-                        Lib.msg(player, pmeta.getBasePotionData().getType().toString());
                         effects.add(pmeta.getBasePotionData().getType().toString());
                     }
                 }
