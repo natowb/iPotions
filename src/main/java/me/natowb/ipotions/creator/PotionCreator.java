@@ -124,7 +124,7 @@ public class PotionCreator {
                     for(String e : plugin.getConfig().getConfigurationSection("potions."+s+".effects").getKeys(false)) {
                         String duration = plugin.getConfig().getString("potions."+s+".effects."+e+".duration");
                         String strength = plugin.getConfig().getString("potions."+s+".effects."+e+".strength");
-                        if(e.equalsIgnoreCase("turtle_master")) {
+                        if(PotionEffectType.getByName(e) == null) {
                             continue;
                         }
                         pmeta.addCustomEffect(new PotionEffect(PotionEffectType.getByName(e), (Integer.parseInt(duration) * 20), Integer.parseInt(strength)),true);
