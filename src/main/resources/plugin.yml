@@ -1,7 +1,6 @@
 name: iPotions
 version: 1.3
-main: me.natowb.ipotions.Main
-api-version: 1.13
+main: me.natowb.ipotions.iPotions
 prefix: iPotions
 authors: [natowb]
 description: create custom potions
@@ -10,8 +9,6 @@ website: github.com/natowb
 commands:
   ipot:
     usage: /<command> help
-
-
 permissions:
   ipot.*:
     children:

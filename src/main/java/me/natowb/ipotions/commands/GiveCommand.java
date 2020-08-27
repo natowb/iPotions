@@ -1,7 +1,7 @@
 package me.natowb.ipotions.commands;
 
 import me.natowb.ipotions.Lib;
-import me.natowb.ipotions.creator.PotionCreator;
+import me.natowb.ipotions.creator.PotionManager;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 
@@ -36,12 +36,12 @@ public class GiveCommand {
             Lib.msg(player, "&cError: &6<" + args[1] + "> &cnot a valid player");
             return ;
         }
-        if(!PotionCreator.validPotion(potion)) {
+        if(!PotionManager.validPotion(potion)) {
             Lib.msg(player, "&cError: &6<" + potion + "> &cpotion doesn't exist");
             return ;
         }
         Lib.msg(player, "&aGave &6<" + target.getName() +" "+ String.valueOf(amount) +  ">&a " + potion);
-        target.getInventory().addItem(PotionCreator.createPotion(potion, amount));
+        target.getInventory().addItem(PotionManager.getPotion(potion, amount));
         Lib.msg(target, "&aRecieved &6<" +  String.valueOf(amount) +  " " + potion + ">&a from " + player.getName());
     }
 

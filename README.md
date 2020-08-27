@@ -9,45 +9,29 @@ First iteration of the plugin so please give feedback on any bugs you notice as 
 All release will be hosted [here]('https://github.com/natowb/iPotions')
 
 
-###Latest Features
-- Ability to create and delete potions in game
-- Ability to edit and config potions in game
-- new permissions were added
-	```YAML
-	ipot.create 	# access to create potions in game 	/ deafult: op
-	ipot.delete 	# access to delete potions in game 	/ deafult: op
-	ipot.edit 		# access to edit potions in game 	/ deafult: op
-	```
-### Planned Features
-
-- [x] Create custom potions in config
-- [x] Select potions color
-- [x] Select Multiple Sub potions
-- [x] change potion type ie Splash & Lingering
-- [x] config potions in-game
-- [ ] Show custom particles
-
-
 ### Potion Effects
-
-![https://i.imgur.com/FNVrgag.png](https://i.imgur.com/FNVrgag.png)
-
-### Potion Colors
-
-![https://i.imgur.com/GF8PPff.png](https://i.imgur.com/GF8PPff.png)
+FIRE_RESISTANCE     =   FIRE_RESISTANCE
+INSTANT_DAMAGE      =   HARM
+INSTANT_HEAL        =   HEAL
+INVISIBILITY        =   INVISIBILITY
+JUMP                =   JUMP
+LUCK                =   LUCK
+NIGHT_VISION        =   NIGHT_VISION
+POISON              =   POISON
+REGEN               =   REGENERATION
+SLOW_FALLING        =   SLOW_FALLING
+SLOWNESS            =   SLOW
+SPEED               =   SPEED
+STRENGTH            =   INCREASE_DAMAGE
+WATER_BREATHING     =   WATER_BREATHING
+WEAKNESS            =   WEAKNESS
 
 ### Example Config
-
 ```YAML
 ##########################################################################
 # Created by NatoWB
 # https://github.com/natowb
 # goto https://github.com/natowb/iPotions for colors and effects
-##########################################################################
-# iPotions Settings
-# Supports Color Codes IE &6, &e, &a
-##########################################################################
-prefix: "[&6i&ePotions&r]"
 ##########################################################################
 # Potions
 # Potion Colors: lime, green, olive, yellow, orange, red, maroon
@@ -56,29 +40,27 @@ prefix: "[&6i&ePotions&r]"
 ##########################################################################
 potions:
   demo:
-    type: base
-    display: '&aDemo' # display name of the potions item
-    color: 'red' # what color of potion to display as the icon
-    effects: # list of potion effects this will use
-      jump: # name of potion effect goto github above to see list
-        duration: 10 # time this effect lastest in seconds
-        strength: 2 # the strength of the effect starting from 0
-      slow_falling: # name of potion effect goto github above to see list
-        duration: 10 # time this effect lastest in seconds
-        strength: 0 # the strength of the effect starting from 0
+    type: splash
+    display: '&aDemo'
+    color: 'red' 
+    effects: 
+      jump: 
+        duration: 10 
+        strength: 2 
+      slow_falling: 
+        duration: 10 
+        strength: 0 
 ```
-
 ### Permissions
-
 ```YAML
 permissions:
-  ipot.*: 		# access to everything 				/ default op
-  ipot.give: 	# access to give command 			/ default op
-  ipot.help: 	# access to help command			/ default op or if they have access to the give command
-  ipot.consume: # access to consume a iPot Potion 	/ default true
-  ipot.throw 	# acces to throw a iPot Potion 		/ default true
-  ipot.create 	# access to create potions in game 	/ deafult: op
-  ipot.delete 	# access to delete potions in game 	/ deafult: op
-  ipot.edit 	# access to edit potions in game 	/ deafult: op
+  ipot.*: 		    # access to everything 				        | default op
+  ipot.give: 	    # access to give command 			        | default op
+  ipot.help: 	    # access to help command			        | default op 
+  ipot.consume:   # access to consume a iPot Potion 	  | default true
+  ipot.throw: 	  # acces to throw a iPot Potion 		    | default true
+  ipot.create: 	  # access to create potions in game 	  | deafult op
+  ipot.delete: 	  # access to delete potions in game 	  | deafult op
+  ipot.edit: 	    # access to edit potions in game 	    | deafult op
   
 ```

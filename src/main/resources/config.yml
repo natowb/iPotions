@@ -1,17 +1,3 @@
-##########################################################################
-# Created by NatoWB
-# https://github.com/natowb
-# goto https://github.com/natowb/iPotions for colors and effects
-##########################################################################
-# iPotions Settings
-# Supports Color Codes IE &6, &e, &a
-##########################################################################
-prefix: "[&6i&ePotions&r]"
-##########################################################################
-# Potions
-# Potion Colors: lime, green, olive, yellow, orange, red, maroon
-# fuchsia, purple, aqua, teal, blue, navy, white, silver, gray, black
-##########################################################################
 potions:
   demo:
     type: splash
