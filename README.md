@@ -4,11 +4,6 @@ _Note: This should work in version other than the currently tested but them may 
 
 ## A plugin for creating custom potions
 
-First iteration of the plugin so please give feedback on any bugs you notice as well as any suggestions or features you would like to see.
-
-All release will be hosted [here]('https://github.com/natowb/iPotions')
-
-
 ### Potion Effects
 ```yml
 FIRE_RESISTANCE     =   FIRE_RESISTANCE
