@@ -10,6 +10,7 @@ All release will be hosted [here]('https://github.com/natowb/iPotions')
 
 
 ### Potion Effects
+```yml
 FIRE_RESISTANCE     =   FIRE_RESISTANCE
 INSTANT_DAMAGE      =   HARM
 INSTANT_HEAL        =   HEAL
@@ -25,6 +26,7 @@ SPEED               =   SPEED
 STRENGTH            =   INCREASE_DAMAGE
 WATER_BREATHING     =   WATER_BREATHING
 WEAKNESS            =   WEAKNESS
+```
 
 ### Example Config
 ```YAML
@@ -52,15 +54,14 @@ potions:
         strength: 0 
 ```
 ### Permissions
-```YAML
-permissions:
-  ipot.*: 		    # access to everything 				        | default op
-  ipot.give: 	    # access to give command 			        | default op
-  ipot.help: 	    # access to help command			        | default op 
-  ipot.consume:   # access to consume a iPot Potion 	  | default true
-  ipot.throw: 	  # acces to throw a iPot Potion 		    | default true
-  ipot.create: 	  # access to create potions in game 	  | deafult op
-  ipot.delete: 	  # access to delete potions in game 	  | deafult op
-  ipot.edit: 	    # access to edit potions in game 	    | deafult op
+```yml
+  ipot.*	    
+  ipot.give	    
+  ipot.help	    
+  ipot.consume 
+  ipot.throw 	  
+  ipot.create	  
+  ipot.delete
+  ipot.edit
   
 ```
