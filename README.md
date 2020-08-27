@@ -4,6 +4,12 @@ _Note: This should work in version other than the currently tested but them may 
 
 ## A plugin for creating custom potions
 
+![Type Selector](https://i.imgur.com/H1VGI6r.gif)
+![Color Selector](https://i.imgur.com/vm6gJEu.gif)
+![Manage Effects](https://i.imgur.com/jcfhcx9.gif)
+![Effect Tuner](https://i.imgur.com/CdZqQm6.gif)
+
+
 ### Potion Effects
 ```yml
 FIRE_RESISTANCE     =   FIRE_RESISTANCE
